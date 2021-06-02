@@ -1,0 +1,16 @@
+{
+    "name": "白",
+    "description": "修改通知弹框样式。第一次使用该主题需重启手机",
+    "type": "certified",
+    "role": "theme",
+    "launch_path": "/index.html",
+    "version": "0.1.0",
+    "icons": {
+        "128": "/icons/icon128x128.png"
+    },
+    "origin": "app://theme-white.kaios.lcsunm.cc",
+    "developer": {
+        "name": "Lcsunm",
+        "url": "http://lcsunm.cc"
+    }
+}
