@@ -135,6 +135,10 @@ Gaia theme variables
     --header-tabbar-height: 5.5rem;
 
     --client-height: calc(100% - var(--statusbar-softkeybar-height));
+
+    --clip-round-size: 0.8rem;
+    --clip-round-z-index: 7777777;
+    --clip-round-background: radial-gradient(at 0% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 71%, black 0%);
 }
 
 .theme-system,
@@ -565,6 +569,48 @@ Gaia theme variables
     --header-action-button-color: var(--title-color);
 }
 
+/* 裁剪效果 */
+.theme-system::after,
+.theme-system::before,
+.theme-system > #screen::after,
+.theme-system > #screen::before {
+    position: absolute;
+    content: "";
+    width: var(--clip-round-size);
+    height: var(--clip-round-size);
+    z-index: var(--clip-round-z-index);
+    background: var(--clip-round-background);
+}
+.theme-system::after {
+    right: 0;
+    top: 0;
+    transform: rotate(270deg);
+}
+.theme-system::before {
+    left: 0;
+    top: 0;
+    transform: rotate(180deg);
+}
+.theme-system > #screen::after {
+    right: 0;
+    bottom: 0;
+    transform: rotate(0deg);
+}
+.theme-system > #screen::before {
+    left: 0;
+    bottom: 0;
+    transform: rotate(90deg);
+}
+
+/* 系统设置 */
+/* .theme-system .root .content ul li{
+    min-height: 0rem !important;
+    padding: 0.5rem 1rem !important;
+}
+.theme-system .root .content ul li span{
+    font-size: 1.4rem !important;
+} */
+
 /* 通知栏 */
 
 #notification-toaster {
@@ -600,7 +646,7 @@ Gaia theme variables
 #notification-toaster .container .icon {
     position: relative;
     width: 4.2rem;
-    max-height: 5.0rem !important;
+    max-height: 5rem !important;
     display: flex !important;
     flex-direction: column !important;
     flex-shrink: 0;
@@ -730,4 +776,180 @@ Gaia theme variables
     font-variant-numeric: nominal;
 }
 
-/* 桌面 */
+/* 对话框 */
+
+.dialog-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: rgba(0, 0, 0, 0.85); */
+    background: rgba(0, 0, 0, 0.3) !important;
+}
+.dialog-container .dialog {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-height: calc(100% - 2rem - var(--statusbar-height));
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5rem 1.5rem 0 0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+}
+.dialog-container .dialog > .header {
+    padding: 0.5rem 1rem;
+    background-color: white !important;
+    color: black !important;
+    font-weight: bold !important;
+    font-size: 1.5rem !important;
+    position: relative !important;
+}
+/* .dialog-container .dialog > .header::after{
+    content: "";
+    position: absolute;
+    height: 0.1rem;
+    width: calc(100% - 32px);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.05);
+} */
+.dialog-container .dialog > .content {
+    height: auto;
+    overflow-y: auto;
+    word-wrap: break-word;
+    word-break: break-all !important;
+    padding: 1rem 1rem 1.5rem 1rem !important;
+    background-color: var(--color-gs00);
+    color: var(--color-gs90);
+    text-align: center !important;
+    font-size: 1.4rem !important;
+}
+.dialog-container .dialog > .content input {
+    display: block;
+    width: 100%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    padding: 0 1.6rem !important;
+    box-sizing: border-box;
+    border: 0.2rem solid #f6529b !important;
+    border-bottom-width: 0.1rem !important;
+    border-radius: 2rem !important;
+    outline: none !important;
+    margin-top: 0.3rem !important;
+}
+.dialog-container .dialog > .content p {
+    margin: 0.4rem 0 0 0;
+    color: rgba(0, 0, 0, 0.8);
+}
+.dialog-container .dialog > .content progress {
+    width: 100%;
+    height: 0.6rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--color-gs45);
+}
+.dialog-container .dialog > .content progress::-moz-progress-bar {
+    background-color: var(--highlight-color, #f6529b);
+    border-radius: 0.5rem;
+}
+
+
+/* 列表选择框 */
+#menu-root > .option-menu-container {
+    border-bottom: var(--softkeybar-height) solid transparent !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    /* background: linear-gradient(to bottom,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 85%,rgba(255,255,255,1) 85%,rgba(255,255,255,1) 100%) !important; */
+}
+#menu-root > .option-menu-container > .option-menu {
+    border-radius: 1.5rem 1.5rem 0 0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+}
+#menu-root > .option-menu-container > .option-menu > .header {
+    padding: 0.5rem 1rem !important;
+    background-color: white !important;
+    color: black !important;
+    font-weight: bold !important;
+    font-size: 1.5rem !important;
+    position: relative !important;
+}
+#menu-root > .option-menu-container > .option-menu > .content {
+    padding-bottom: 0.5rem !important;
+}
+#menu-root > .option-menu-container > .option-menu > .content > .menu-item {
+    border-radius: 2rem !important;
+    font-size: 1.4rem !important;
+    margin: 0.2rem 1.5rem !important;
+    min-height: 0 !important;
+    justify-content: center !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    flex-direction: row !important;
+}
+
+
+/* 导航栏 */
+/* .theme-system>#screen>#soft-key-root>#softkeyPanel {
+    background: white;
+    padding: 5px 10px 5px 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel > * + * {
+    margin-left: 15px;
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-left,
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-center,
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-right {
+    font-weight: normal;
+    text-align: center;
+    border-radius: 17px;
+    height: 100%;
+    font-size: 13px;
+    padding: 1px;
+    line-height: unset;
+    flex: 1;
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-left {
+    color: black;
+    background: rgb(238, 238, 238);
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-left:empty {
+    visibility: hidden;
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-center {
+    color: white;
+    background: var(--color-purple);
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-center:empty {
+    visibility: hidden;
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-right {
+    color: white;
+    background: var(--color-purple);
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-right:empty {
+    visibility: hidden;
+}
+
+.theme-system>#screen>#soft-key-root>#softkeyPanel #software-keys-center:not(:empty) + #software-keys-right:not(:empty) {
+    color: black;
+    background: rgb(238, 238, 238);
+} */
+
+/* .theme-system>#screen>#dialog-root{
+    background: linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,1) 90%,rgba(255,255,255,1) 100%) !important;
+} */

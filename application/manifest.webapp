@@ -1,10 +1,10 @@
 {
     "name": "白",
-    "description": "修改通知弹框样式。第一次使用该主题需重启手机",
+    "description": "通知弹框/对话框/全局圆角。第一次使用该主题需重启手机",
     "type": "certified",
     "role": "theme",
     "launch_path": "/index.html",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "icons": {
         "128": "/icons/icon128x128.png"
     },
@@ -12,5 +12,8 @@
     "developer": {
         "name": "Lcsunm",
         "url": "http://lcsunm.cc"
+    },
+    "chrome": {
+        "statusbar": "overlap"
     }
 }
