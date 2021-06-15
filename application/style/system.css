@@ -232,6 +232,11 @@
     background-size: 200% 100%;
     background-image: linear-gradient(90deg, var(--progress-active-color) 50%, transparent 0, transparent calc(50% + 0.3rem), var(--progress-inactive-color) 0);
 }
+
+html[dir="rtl"] .list-item .number {
+    direction: ltr;
+    text-align: right;
+}
 #notification-root {
     position: absolute;
     top: 0;
@@ -294,7 +299,6 @@
 }
 #notification-toaster {
     background-color: var(--color-gs20);
-    border-bottom: 0.1rem solid var(--color-gs45);
     box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
     color: var(--color-gs90);
 }
@@ -335,6 +339,10 @@
     word-wrap: break-word;
     min-width: 0;
 }
+#notification-toaster .container .content .primary div {
+    max-height: calc(1.7rem * 6 * 1.36);
+    overflow: hidden;
+}
 #notification-toaster .container .content .secondary {
     overflow: hidden;
     white-space: nowrap;
@@ -344,6 +352,11 @@
 }
 #notification-toaster .container .content .secondary:not(:empty) {
     margin-top: 0.5rem;
+}
+
+.large-text #notification-toaster .container .primary div {
+    max-height: calc(2.2rem * 6 * 1.36);
+    overflow: hidden;
 }
 
 .x-window.slide-from-top {
@@ -437,6 +450,11 @@
 
 [data-app-name="Settings"] {
     --icon-background-color: #696be5;
+}
+
+html[dir="rtl"] #notification-toaster-root .number {
+    direction: ltr;
+    text-align: right;
 }
 #notice-dialog-header > .title {
     font-size: 1.4rem;
@@ -781,6 +799,9 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
 .permission-root.permission-root {
     top: 0;
 }
+.large-text .permission-root .content.content > div {
+    max-height: 9rem;
+}
 .permission-root .dialog {
     position: fixed;
     left: 0;
@@ -838,22 +859,6 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
     padding-top: 0;
     padding-bottom: 0;
 }
-.permission-root .permission-remember-section {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-}
-.permission-root .permission-remember-section .checkbox {
-    margin-inline-start: auto;
-    margin-inline-end: -0.5rem;
-    font-size: 3.2rem;
-}
-.permission-root .permission-remember-section:not(:focus) .checkbox {
-    color: var(--color-gs45);
-}
-.permission-root .permission-remember-section:not(:focus) .checkbox[data-icon="check-on"] {
-    color: var(--highlight-color);
-}
 .permission-root .permission-device-selector:empty,
 .permission-root .permission-devices:empty {
     display: none;
@@ -865,7 +870,7 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
 
 @media only screen and (orientation: landscape) {
     .dialog-container .dialog {
-        max-height: calc(100%);
+        max-height: calc(100% - var(--statusbar-height));
     }
     .permission-root .dialog .camera [data-icon] {
         font-size: 2.7rem;
@@ -885,12 +890,6 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
         width: 70%;
         margin-left: 1rem;
         padding-top: 1rem;
-    }
-    .permission-root .dialog .camera .permission-remember-section {
-        line-height: 5rem;
-    }
-    .permission-root .dialog .camera .permission-remember-section label {
-        margin-left: 1rem;
     }
     .permission-root .dialog .camera .permission-more-info {
         width: 100%;
@@ -929,7 +928,6 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
 }
 #system-toaster {
     background-color: var(--color-gs20);
-    border-bottom: 0.1rem solid var(--color-gs45);
     box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
     color: var(--color-gs90);
 }
@@ -970,6 +968,10 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
     word-wrap: break-word;
     min-width: 0;
 }
+#system-toaster .container .content .primary div {
+    max-height: calc(1.7rem * 6 * 1.36);
+    overflow: hidden;
+}
 #system-toaster .container .content .secondary {
     overflow: hidden;
     white-space: nowrap;
@@ -979,6 +981,11 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
 }
 #system-toaster .container .content .secondary:not(:empty) {
     margin-top: 0.5rem;
+}
+
+.large-text #system-toaster .container .primary div {
+    max-height: calc(2.2rem * 6 * 1.36);
+    overflow: hidden;
 }
 
 #system-toaster-root {
@@ -992,6 +999,16 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
 #system-toaster-root .container .content {
     text-align: center;
     font-variant-numeric: nominal;
+}
+#system-toaster-root .container .content .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#system-toaster {
+    background-color: var(--color-gs90);
+    color: var(--color-gs00);
 }
 .sim-dialog {
     background-color: white;
@@ -1731,6 +1748,7 @@ html[dir="rtl"] .option-menu-container .option-menu .content .menu-item [data-ic
     color: var(--color-gs20);
     display: flex;
     line-height: 1;
+    font-size: 1.4rem !important;
 }
 #simcard-info .info-row .carrier-name .text {
     margin: auto;
@@ -1815,6 +1833,7 @@ html[dir="rtl"] #simcard-info .icon.bg::before {
 #remote-passcode-view .info-text,
 #passcode-view .info-text {
     height: 3rem;
+    font-size: 1.4rem !important;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -1975,7 +1994,11 @@ html[dir="rtl"] #simcard-info .icon.bg::before {
     flex-direction: column;
     align-items: left;
     box-sizing: border-box;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0, black calc(100% - var(--softkeybar-height)));
+    background: linear-gradient(rgba(0, 0, 0, 0.7), #000), var(--wallpaper-url);
+}
+
+.screenoff #lockscreen-view {
+    background: #000 !important;
 }
 
 #remote-message {
@@ -2046,13 +2069,14 @@ html[dir="rtl"] #simcard-info .icon.bg::before {
 }
 #icc-input-msg {
     margin-left: -0.2rem;
+    padding: 1rem 0 0.5rem 0;
 }
 
 .stk-dialog {
     background: #f4f4f4;
     color: #000;
     -moz-box-sizing: border-box;
-    min-height: 20rem;
+    height: auto;
 }
 .stk-dialog gaia-header {
     --header-background: var(--color-gs20);
@@ -2065,31 +2089,41 @@ html[dir="rtl"] #simcard-info .icon.bg::before {
 }
 .stk-dialog section {
     width: 100%;
-    height: 100%;
 }
 .stk-dialog section p {
-    width: calc(100% - 6rem);
-    padding: 0 3rem;
-    overflow: scroll;
     margin: 0;
-    max-height: calc(100% - 2rem);
+    max-height: 60vh;
+    width: calc(100% - 2rem);
+    word-wrap: break-word;
+    height: auto;
+    overflow-y: auto;
+    padding: 1rem;
+    color: var(--color-gs90);
 }
 .stk-dialog section .form {
     padding: 0 1.5rem;
     width: calc(100% - 3rem);
-    overflow: scroll;
     margin: 0;
+    position: inherit;
 }
 .stk-dialog section .form p {
-    margin: 0 1.5rem 1.4rem;
-    overflow: scroll;
+    overflow-y: auto;
     padding: 0;
-    max-height: 35vh;
+    max-height: 48vh;
     width: 100%;
     word-wrap: break-word;
 }
 .stk-dialog section .form span.icons {
-    padding: 2rem 1.5rem 0;
+    padding: 0;
+}
+.stk-dialog section .form input {
+    font-size: 1.7rem;
+    display: block;
+    width: 100%;
+    height: 3.6rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    margin: 0.5rem 0;
 }
 .stk-dialog section[data-icons] > form > p.stk-no-text {
     height: 0;
@@ -2103,9 +2137,7 @@ html[dir="rtl"] #simcard-info .icon.bg::before {
     margin: 0 0 2rem;
 }
 .stk-dialog section span.icons {
-    display: block;
-    width: calc(100% - 6rem);
-    padding: 2rem 3rem 0;
+    padding: 0;
 }
 .stk-dialog section[data-icons="true"] span.icons {
     padding-bottom: 1.4rem;
@@ -2120,6 +2152,16 @@ html[dir="rtl"] #simcard-info .icon.bg::before {
     color: var(--color-gs70);
     white-space: pre-line;
     font-size: 1.7rem;
+}
+
+section[data-icons="true"] span.icons {
+    display: block;
+    width: calc(100% - 6rem);
+    padding: 2rem 3rem 0;
+}
+
+section[data-icons="true"] .form span.icons {
+    padding: 2rem 1.5rem 0;
 }
 
 #icc-input .yesnodisabled {
@@ -2194,6 +2236,9 @@ html[dir="rtl"] #simcard-info .icon.bg::before {
 }
 
 @media screen and (orientation: landscape) {
+    .stk-dialog {
+        min-height: 12rem;
+    }
     .stk-dialog gaia-header h1 {
         font-size: 1.5rem !important;
     }
@@ -2538,8 +2583,7 @@ html[dir="rtl"] #simcard-info .icon.bg::before {
 }
 .option-menu-container.option-menu-container.option-menu-container--sleep-menu .menu-item {
     width: 22rem;
-    height: 3.6rem;
-    min-height: unset;
+    min-height: 3.6rem;
     margin-left: auto;
     margin-right: auto;
     border-radius: 10rem;

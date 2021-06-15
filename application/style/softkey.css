@@ -1,0 +1,58 @@
+
+/* 导航栏 */
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel {
+    background: white;
+    padding: 5px 10px 5px 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel > * + * {
+    margin-left: 15px;
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-left,
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-center,
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-right {
+    font-weight: normal;
+    text-align: center;
+    border-radius: 17px;
+    height: 100%;
+    font-size: 13px;
+    padding: 1px;
+    line-height: unset;
+    flex: 1;
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-left {
+    color: black;
+    background: rgb(238, 238, 238);
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-left:empty {
+    visibility: hidden;
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-center {
+    color: white;
+    background: var(--color-purple);
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-center:empty {
+    visibility: hidden;
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-right {
+    color: white;
+    background: var(--color-purple);
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-right:empty {
+    visibility: hidden;
+}
+
+/* #dialog-root:not(:empty) + */ #softkeyPanel #software-keys-center:not(:empty) + #software-keys-right:not(:empty) {
+    color: black;
+    background: rgb(238, 238, 238);
+}

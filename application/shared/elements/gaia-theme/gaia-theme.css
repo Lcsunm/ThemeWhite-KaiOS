@@ -862,6 +862,7 @@ Gaia theme variables
 /* 列表选择框 */
 #menu-root > .option-menu-container {
     border-bottom: var(--softkeybar-height) solid transparent !important;
+    bottom: 0 !important;
     background: rgba(0, 0, 0, 0.3) !important;
     /* background: linear-gradient(to bottom,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 85%,rgba(255,255,255,1) 85%,rgba(255,255,255,1) 100%) !important; */
 }
@@ -869,6 +870,7 @@ Gaia theme variables
     border-radius: 1.5rem 1.5rem 0 0 !important;
     border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
     overflow: hidden;
+    min-height: 0 !important;
 }
 #menu-root > .option-menu-container > .option-menu > .header {
     padding: 0.5rem 1rem !important;
@@ -882,6 +884,8 @@ Gaia theme variables
     padding-bottom: 0.5rem !important;
 }
 #menu-root > .option-menu-container > .option-menu > .content > .menu-item {
+    border: none !important;
+    outline: none !important;
     border-radius: 2rem !important;
     font-size: 1.4rem !important;
     margin: 0.2rem 1.5rem !important;
